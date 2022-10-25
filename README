@@ -1,0 +1,11 @@
+An Architecture definition for nextpnr to generate instruction for a TuringTumble board.
+
+I already tried, back in June 2019 to do that, unfortunately, I have no idea anymore what I tried.
+
+So this time I'll start with some documentation.
+
+There is this video from Claire @oe1cxw on Youtube: https://www.youtube.com/watch?v=XbwrOff59ck
+
+And there is this 'simple' example architecture: https://github.com/YosysHQ/nextpnr/tree/master/generic/examples. This directory did not changed much for the last three years.
+
+See TuringTumble.txt for a description of the board as an 'architecture'.

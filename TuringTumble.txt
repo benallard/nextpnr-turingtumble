@@ -1,0 +1,29 @@
+There is an online simulator here: https://jessecrossen.github.io/ttsim/
+
+So, if that would be an FPGA, how would we describe that?
+
+We have two Sources on top, and two Sinks at the bottom.
+The left Sink is linked to the left source, and the right one to the right source.
+
+We have two kind of Bels, the one where the wheel is coming and the ones for the other kind of cells.
+
+Each not-wheel Bel has two inputs (the two top corners)L IL and IR, and two outputs (the bottom corners): OR and OL.
+Additionally, we need a way to propagate the ball, so let's add an input port and an output port for it.
+Kind of our global clock, except that our clock is only active at one bel at a time (in the normal configuration, if only one ball is on the board at a time).
+The ball can be represented by a travelling pulse on the clock bus (well not bus: chain).
+
+Additionally, there is a stop "Bel" that does halts the execution (_)
+
+What kind of cells do we have:
+
+\ : OR = IL + IR; OL = 0
+/ : OR = 0; OL = IL + IR
+X : OR = IL; OL = IR
+^ : V <= not(V); OR <= not(V) (IL + IR); OL <= V(IL + IR)
+_ : edge = 0;
+ô : Like ^, but does propagate its V to the linked ô via wheels.
+o : (the wheel) just a linking wheel. does propagate its movement to the adjacent ô.
+
+Maybe we should abstract it on a level higher, and have one input: left or right, and one output (register): the colors of the balls at the botom.
+Plus the 'active' state?
+
