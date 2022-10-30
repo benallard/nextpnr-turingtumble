@@ -2,14 +2,14 @@ module RAMP_LEFT(
     input i_right,
     input i_left,
     output o_left);
-    assign o_left = i_right & i_left;
+    assign o_left = i_right | i_left;
 endmodule
 
 module RAMP_RIGHT(
     input i_right,
     input i_left,
     output o_right);
-    assign o_right = i_right & i_left;
+    assign o_right = i_right | i_left;
 endmodule
 
 module CROSS_OVER(
@@ -24,8 +24,7 @@ endmodule
 module INTERCEPTOR(
     input i_right,
     input i_left,
-    output reg occupied);
-    initial occupied = 0;
+    output reg occupied = 0);
     always @(posedge i_right or posedge i_left) begin
         occupied <= 1;
     end
