@@ -13,13 +13,13 @@ module puzzle
     // The top
     wire blue_balls, red_balls;
     // the bottom
-    wire blue_sink, red_sink;
+    wire red_sink;
 
     wire no_balls;
 
     // our board definition
     BOARD board(
-        .blue_trigger(blue_sink | start),
+        .blue_trigger(start), // We have no blue sink in this design
         .red_trigger(red_sink),
         .blue_ball(blue_balls),
         .red_ball(red_balls),
@@ -29,7 +29,6 @@ module puzzle
         .tray_amount());
 
     wire w1;
-
     RAMP_RIGHT rr1 (
         .i_left(blue_balls),
         .i_right(1'b0),
