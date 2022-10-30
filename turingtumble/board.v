@@ -26,31 +26,31 @@ module BOARD
     reg [4:0] reds = AMOUNT_RED;
 
     reg start = 1;
-    reg [3:0] tray_idx = 0;
+    reg [2:0] tray_idx = 0;
+
+    wire trigger = blue_trigger | red_trigger;
 
     always @(posedge blue_trigger) begin
         if (blues > 0)
-            begin
-                // TODO: save color of current ball on the result array
-                current_color <= `BLUE;
-                blues <= blues - 1;
-            end
-        else
-            no_balls <= 1;
+            blues <= blues - 1;
     end
 
     always @(posedge red_trigger) begin
         if (reds > 0)
-            begin
-                // TODO: save color of current ball on the result array
-                current_color <= `RED;
-                reds <= reds - 1;
-            end
-        else
-            no_balls <= 1;
+            reds <= reds - 1;
     end
 
-    always @(posedge blue_trigger or posedge red_trigger) begin
+    always @(posedge trigger)
+        no_balls <= (blue_trigger & blues == 0) | (red_trigger & reds == 0);
+
+    always @(posedge trigger) begin
+        if (red_trigger & reds > 0)
+            current_color <= `RED;
+        if (blue_trigger & blues > 0)
+            current_color <= `BLUE;
+    end
+
+    always @(posedge trigger) begin
         if (start)
             start <= 0;
         else
