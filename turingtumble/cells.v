@@ -23,15 +23,22 @@ endmodule
 
 module INTERCEPTOR(
     input i_right,
-    input i_left);
+    input i_left,
+    output reg occupied);
+    initial occupied = 0;
+    always @(posedge i_right or posedge i_left) begin
+        occupied <= 1;
+    end
 endmodule
 
-module BIT(
+module BIT
+#(parameter INIT = 0)
+(
     input i_right,
     input i_left,
     output o_right,
     output o_left);
-    reg V;
+    reg V = INIT;
     always @(posedge i_right, posedge i_left)
         V <= ~V;
     assign o_right = ~V & (i_right | i_left);

@@ -21,3 +21,6 @@ What you'll need:
 
 * nextpnr-generic
 * yosys
+
+I need to get a grip on the problem first.
+How about formally veifying some board solutions.

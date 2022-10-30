@@ -16,10 +16,11 @@ module BOARD
     output blue_ball,
     output red_ball,
     // All balls gone
-    output reg no_balls,
+    output reg no_balls = 0,
     // color of the ball currently on the board
     output reg current_color,
-    output reg [5:0] tray
+    output reg [5:0] tray,
+    output wire [2:0] tray_amount
 );
 
     reg [4:0] blues = AMOUNT_BLUE;
@@ -59,6 +60,8 @@ module BOARD
                 tray_idx <= tray_idx + 1;
             end
     end
+
+    assign tray_amount = tray_idx;
 
     assign blue_ball = (blues > 0) & blue_trigger;
     assign red_ball = (reds > 0) & red_trigger;
