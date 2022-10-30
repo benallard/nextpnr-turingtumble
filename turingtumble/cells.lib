@@ -1,0 +1,51 @@
+library(turingtumble) {
+    cell(RAMP_LEFT){
+        pin(i_right) {direction: input;}
+        pin(i_left) {direction: input;}
+        pin(o_left) {
+            direction: output;
+            function: "i_right+i_left";
+        }
+    }
+    cell(RAMP_RIGHT){
+        pin(i_right) {direction: input;}
+        pin(i_left) {direction: input;}
+        pin(o_right) {
+            direction: output;
+            function: "i_right+i_left";
+        }
+    }
+    cell (CROSS_OVER){
+        pin(i_right) {direction: input;}
+        pin(i_left) {direction: input;}
+        pin(o_right) {
+            direction: output;
+            function: "i_left";
+        }
+        pin(o_left) {
+            direction: output;
+            function: "i_right";
+        }
+    }
+    cell (INTERCEPTOR){
+        pin(i_right) {direction: input;}
+        pin(i_left) {direction: input;}
+        ; // empty statement
+    }
+    cell (BIT){
+        ff(IQ, IQN){
+            clocked_on: "i_right + i_left";
+            next_state: "IQ'";
+        }
+        pin(i_right) {direction: input;}
+        pin(i_left) {direction: input;}
+        pin(o_right) {
+            direction: output;
+            function: IQ;
+        }
+        pin(o_left) {
+            direction: output;
+            function: "IQ'";
+        }
+    }
+}
