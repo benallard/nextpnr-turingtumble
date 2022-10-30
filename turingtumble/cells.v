@@ -2,14 +2,14 @@ module RAMP_LEFT(
     input i_left,
     input i_right,
     output o_left);
-    assign o_left = i_right | i_left;
+    assign #1 o_left = i_right | i_left;
 endmodule
 
 module RAMP_RIGHT(
     input i_left,
     input i_right,
     output o_right);
-    assign o_right = i_right | i_left;
+    assign #1 o_right = i_right | i_left;
 endmodule
 
 module CROSS_OVER(
@@ -17,8 +17,8 @@ module CROSS_OVER(
     input i_right,
     output o_left,
     output o_right);
-    assign o_left = i_right;
-    assign o_right = i_left;
+    assign #1 o_left = i_right;
+    assign #1 o_right = i_left;
 endmodule
 
 module INTERCEPTOR(
@@ -41,8 +41,8 @@ module BIT
     always @(posedge i_right or posedge i_left) begin
         V <= ~V;
     end
-    assign o_right = ~V & (i_right | i_left);
-    assign o_left = V & (i_right | i_left);
+    assign #1 o_right = ~V & (i_right | i_left);
+    assign #1 o_left = V & (i_right | i_left);
 endmodule
 
 // inout on the four sides

@@ -1,3 +1,4 @@
+`timescale 1ps/1ps
 `include "19_entanglement/solution.v"
 
 module tb;
@@ -16,10 +17,10 @@ module tb;
         $dumpvars(0, tb);
         $monitor("[%03d] start=%0b, stopped=%0b, colour=%0b", $time, start, stopped, colour);
         start = 0;
-        #5 start = 1;
+        #50 start = 1;
         #1 start = 0;
 
-        #20 $finish;
+        #2000 $finish;
     end
 
 endmodule

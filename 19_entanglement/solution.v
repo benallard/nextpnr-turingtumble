@@ -89,6 +89,6 @@ module puzzle
     wire int_full;
     INTERCEPTOR stop (w21, 1'b0, int_full);
 
-    assign stopped = no_balls | int_full;
+    assign #1 stopped = no_balls | int_full;
 
 endmodule

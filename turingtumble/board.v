@@ -6,6 +6,7 @@
 `define RED   1
 
 module BOARD
+    // With how many balls to start
     #(parameter AMOUNT_BLUE = 8,
       parameter AMOUNT_RED  = 8)
      (
@@ -19,15 +20,15 @@ module BOARD
     output reg no_balls = 0,
     // color of the ball currently on the board
     output reg current_color,
-    output reg [5:0] tray,
-    output wire [2:0] tray_amount
+    output reg [31:0] tray,
+    output wire [4:0] tray_amount
 );
 
     reg [4:0] blues = AMOUNT_BLUE;
     reg [4:0] reds = AMOUNT_RED;
 
     reg start = 1;
-    reg [2:0] tray_idx = 0;
+    reg [4:0] tray_idx = 0;
 
     wire trigger = blue_trigger | red_trigger;
 
@@ -61,9 +62,9 @@ module BOARD
             end
     end
 
-    assign tray_amount = tray_idx;
+    assign #1 tray_amount = tray_idx;
 
-    assign blue_ball = (blues > 0) & blue_trigger;
-    assign red_ball = (reds > 0) & red_trigger;
+    assign #1 blue_ball = ~start & (blues > 0) & blue_trigger;
+    assign #1 red_ball = ~start & (reds > 0) & red_trigger;
     
 endmodule

@@ -23,4 +23,9 @@ What you'll need:
 * yosys
 
 I need to get a grip on the problem first.
-How about formally veifying some board solutions.
+How about formally verifying some board solutions.
+
+Ok, well, we're not formal yet ...
+Clockless designs are pretty difficult to debug as everything is happening at once.
+There is no way the trace can help unless we add delays in each of the `assign` statements.
+Is that really a solution?
