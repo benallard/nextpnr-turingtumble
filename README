@@ -1,11 +1,23 @@
-An Architecture definition for nextpnr to generate instruction for a TuringTumble board.
+An Architecture definition to generate instruction for a TuringTumble board.
 
 I already tried, back in June 2019 to do that, unfortunately, I have no idea anymore what I tried.
 
 So this time I'll start with some documentation.
 
-There is this video from Claire @oe1cxw on Youtube: https://www.youtube.com/watch?v=XbwrOff59ck
+There is this video from Claire @oe1cxw on Youtube: https://www.youtube.com/watch?v=XbwrOff59ck about defining custom archs for nextpnr.
 
-And there is this 'simple' example architecture: https://github.com/YosysHQ/nextpnr/tree/master/generic/examples. This directory did not changed much for the last three years.
+And there is this 'simple' example architecture: https://github.com/YosysHQ/nextpnr/tree/master/generic/examples.
+
+This directory did not changed much for the last three years.
+
+It seems, however, that yosys must be tackled first.
+Indeed, at first, we will need to synthetise Verilog code into TuringTumble cells.
+
+So better start looking into the https://github.com/YosysHQ/yosys/blob/master/examples/cmos example directory, and see if we can define our cells there.
 
 See TuringTumble.txt for a description of the board as an 'architecture'.
+
+What you'll need:
+
+* nextpnr-generic
+* yosys

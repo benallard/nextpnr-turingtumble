@@ -11,8 +11,10 @@ Each not-wheel Bel has two inputs (the two top corners)L IL and IR, and two outp
 Additionally, we need a way to propagate the ball, so let's add an input port and an output port for it.
 Kind of our global clock, except that our clock is only active at one bel at a time (in the normal configuration, if only one ball is on the board at a time).
 The ball can be represented by a travelling pulse on the clock bus (well not bus: chain).
+Connection with the wheel should also be handled as I/O.
+On every four side.
 
-Additionally, there is a stop "Bel" that does halts the execution (_)
+Additionally, there is a stop "Bel" that does halts the execution `_`.
 
 What kind of cells do we have:
 
