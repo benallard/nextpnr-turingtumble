@@ -19,12 +19,12 @@ module CROSS_OVER(
     output o_left);
     assign o_left = i_right;
     assign o_right = i_left;
-endmodule;
+endmodule
 
 module INTERCEPTOR(
     input i_right,
-    input i_left)
-endmodule;
+    input i_left);
+endmodule
 
 module BIT(
     input i_right,
