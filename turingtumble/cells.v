@@ -38,6 +38,10 @@ module BIT
     output o_left,
     output o_right);
     reg V = INIT;
+    // Theoritically, we could move the condition to negedge (leaving of the ball), and invert the V and ~V.
+    // Here, we are taking the previous state to decide which side to go, which is not strictly correct.
+    // Maybe one could design an FSM (IDLE, TURNING), to separate the decision and the state change.
+    // Being clockless does not really helps there with designing FSMs.
     always @(posedge i_right or posedge i_left) begin
         V <= ~V;
     end

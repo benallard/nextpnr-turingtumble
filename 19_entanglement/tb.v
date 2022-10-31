@@ -1,5 +1,5 @@
 `timescale 1ps/1ps
-`include "19_entanglement/solution.v"
+`include "19_entanglement/puzzle.v"
 
 module tb;
 

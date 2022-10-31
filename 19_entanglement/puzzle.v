@@ -1,5 +1,5 @@
-`include "board.v"
-`include "cells.v"
+`include "turingtumble/board.v"
+`include "turingtumble/cells.v"
 
 module puzzle
 #(parameter A_INIT = 0,
@@ -43,7 +43,8 @@ module puzzle
 
     wire w3;
     RAMP_LEFT rl1(1'b0, red_balls, w3);
-    wire w4;
+    // Well, if it's the only one he is complaining about ...
+    /* verilator lint_off UNOPTFLAT */wire w4;/* verilator lint_on UNOPTFLAT */
     RAMP_LEFT rl2(1'b0, w3, w4);
 
     wire w5, w6;
@@ -83,7 +84,6 @@ module puzzle
 
     wire w21;
     RAMP_RIGHT rr11 (w19, 1'b0, w21);
-    wire w22;
     RAMP_LEFT rl7 (w20, 1'b0, red_sink);
 
     wire int_full;
