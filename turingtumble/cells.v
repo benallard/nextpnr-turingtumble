@@ -41,8 +41,8 @@ module BIT
     always @(posedge i_right or posedge i_left) begin
         V <= ~V;
     end
-    assign #1 o_right = ~V & (i_right | i_left);
-    assign #1 o_left = V & (i_right | i_left);
+    assign #1 o_left = ~V & (i_right | i_left);
+    assign #1 o_right = V & (i_right | i_left);
 endmodule
 
 // inout on the four sides
