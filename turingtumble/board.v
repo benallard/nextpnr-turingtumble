@@ -20,15 +20,15 @@ module BOARD
     output reg no_balls = 0,
     // color of the ball currently on the board
     output reg current_color,
-    output reg [31:0] tray,
-    output wire [4:0] tray_amount
+    output reg [AMOUNT_BLUE+AMOUNT_RED-1:0] tray,
+    output wire [$clog2(AMOUNT_BLUE+AMOUNT_RED)-1:0] tray_amount
 );
 
-    reg [4:0] blues = AMOUNT_BLUE;
-    reg [4:0] reds = AMOUNT_RED;
+    reg [$clog2(AMOUNT_BLUE):0] blues = AMOUNT_BLUE;
+    reg [$clog2(AMOUNT_RED):0] reds = AMOUNT_RED;
 
     reg start = 1;
-    reg [4:0] tray_idx = 0;
+    reg [$clog2(AMOUNT_BLUE+AMOUNT_RED)-1:0] tray_idx = 0;
 
     wire trigger = blue_trigger | red_trigger;
 

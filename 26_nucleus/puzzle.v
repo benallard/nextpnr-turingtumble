@@ -4,7 +4,7 @@
 module puzzle(
     input start,
     output stopped,
-    output [31:0] tray,
+    output [19:0] tray,
     output [4:0] tray_size
 );
 

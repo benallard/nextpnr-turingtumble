@@ -5,7 +5,7 @@ module tb;
 
     reg start;
     wire stopped;
-    wire[31:0] tray;
+    wire[19:0] tray;
     wire[4:0] tray_size;
 
     puzzle uut (start, stopped, tray, tray_size);
