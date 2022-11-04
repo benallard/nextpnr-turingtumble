@@ -1,0 +1,12 @@
+read_verilog 19_entanglement/pieces.v
+synth
+
+
+# mapping to target cells
+#dfflibmap -liberty turingtumble/cells.lib
+abc -liberty turingtumble/cells.lib
+clean
+
+stat -liberty turingtumble/cells.lib
+
+write_verilog puzzle19.v

@@ -41,7 +41,7 @@ library(turingtumble) {
         pin(i_left) {direction: input;}
         pin(o_right) {
             direction: output;
-            function: "IQ*(i_right+i_left);
+            function: "IQ*(i_right+i_left)";
         }
         pin(o_left) {
             direction: output;

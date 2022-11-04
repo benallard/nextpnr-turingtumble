@@ -34,3 +34,6 @@ Now what?
 I still have no geared-bit working as a struggle on the contact (wheel) interface.
 Should it be inout or such ?
 
+But, I do have enough to (ty to) run through yosys.
+So at first, I need to extract the part I want to get synthetized (the 'pieces' from the puzzle.v file).
+So, basically, two inputs (on top), few outputs (the bottom row), and maybe some internal states as extra outputs.

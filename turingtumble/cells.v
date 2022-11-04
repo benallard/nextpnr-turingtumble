@@ -25,7 +25,10 @@ module INTERCEPTOR(
     input i_left,
     input i_right,
     output reg occupied = 0);
-    always @(posedge i_right or posedge i_left) begin
+    wire i_both;
+    assign i_both = i_right | i_left;
+    always @(posedge i_both)
+    begin
         occupied <= 1;
     end
 endmodule
@@ -42,11 +45,14 @@ module BIT
     // Here, we are taking the previous state to decide which side to go, which is not strictly correct.
     // Maybe one could design an FSM (IDLE, TURNING), to separate the decision and the state change.
     // Being clockless does not really helps there with designing FSMs.
-    always @(posedge i_right or posedge i_left) begin
+    wire i_both;
+    assign i_both = i_right | i_left;
+    always @(posedge i_both)
+    begin
         V <= ~V;
     end
-    assign #1 o_left = ~V & (i_right | i_left);
-    assign #1 o_right = V & (i_right | i_left);
+    assign #1 o_left = ~V & (i_both);
+    assign #1 o_right = V & (i_both);
 endmodule
 
 // in on all four sides
