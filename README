@@ -29,3 +29,8 @@ Ok, well, we're not formal yet ...
 Clockless designs are pretty difficult to debug as everything is happening at once.
 There is no way the trace can help unless we add delays in each of the `assign` statements.
 Is that really a solution?
+
+Now what?
+I still have no geared-bit working as a struggle on the contact (wheel) interface.
+Should it be inout or such ?
+

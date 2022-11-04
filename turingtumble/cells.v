@@ -49,10 +49,42 @@ module BIT
     assign #1 o_right = V & (i_right | i_left);
 endmodule
 
-// inout on the four sides
-module GEAR();
+// in on all four sides
+// out common.
+module GEAR (
+    input i_top, i_right, i_bottom, i_left,
+    output o_moving
+);
+    assign #1 o_moving = i_top | i_right | i_bottom | i_left;
 endmodule
 
 // Basically a GEAR and a BIT
-module GEARED_BIT();
+module GEARED_BIT
+#(parameter INIT = 0)(
+    input i_ball_left,
+    input i_ball_right,
+    output o_ball_left,
+    output o_ball_right,
+    input i_gear_top,
+    input i_gear_right,
+    input i_gear_bottom,
+    input i_gear_left,
+    output o_moving);
+
+    BIT #(.INIT(INIT)) _bit (
+        .i_left(i_ball_left),
+        .i_right(i_ball_right),
+        .o_left(o_ball_left),
+        .o_right(o_ball_right));
+
+    wire gear_moving;
+    GEAR gear(
+        .i_top(i_gear_top),
+        .i_right(i_gear_right),
+        .i_bottom(i_gear_bottom),
+        .i_left(i_gear_left),
+        .o_moving(gear_moving)
+    );
+
+    assign #1 o_moving = i_ball_left | i_ball_right | gear_moving;
 endmodule
