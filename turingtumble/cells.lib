@@ -4,14 +4,14 @@ library(turingtumble) {
         pin(i_right, i_left) {direction: input;}
         pin(o_left) {
             direction: output;
-            function: "i_right+i_left";
+            function: "i_right | i_left";
         }
     }
     cell(RAMP_RIGHT){
         pin(i_right, i_left) {direction: input;}
         pin(o_right) {
             direction: output;
-            function: "i_right+i_left";
+            function: "i_right | i_left";
         }
     }
     cell (CROSS_OVER){
@@ -31,19 +31,29 @@ library(turingtumble) {
     }
     cell (BIT){
         pin(i_right, i_left) {direction: input;}
-        pin(i_both){direction: internal; function: "i_right + i_left";}
-        pin(not_v){direction: internal; function: "IQN";}
+        pin(i_both){
+            direction: internal;
+            function: "i_right | i_left";
+        }
+        pin(not_v){
+            direction: internal;
+            function: "IQN";
+        }
         ff(IQ, IQN){
             clocked_on: "i_both";
             next_state: "not_v";
         }
+        statetable(" i_right i_left", "IQ"){
+            table: " R - : L/H : H/L\
+                     - R : L/H : H/L";
+        }
         pin(o_right) {
             direction: output;
-            function: "IQ*i_both";
+            function: "IQ & i_both";
         }
         pin(o_left) {
             direction: output;
-            function: "IQN*i_both";
+            function: "IQN & i_both";
         }
     }
 }
