@@ -3,7 +3,7 @@ synth
 
 
 # mapping to target cells
-#dfflibmap -liberty turingtumble/cells.lib
+dfflibmap -liberty turingtumble/cells.lib
 abc -liberty turingtumble/cells.lib
 clean
 

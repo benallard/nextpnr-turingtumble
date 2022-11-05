@@ -1,23 +1,21 @@
 library(turingtumble) {
+    technology(custom); // at least, not cmos
     cell(RAMP_LEFT){
-        pin(i_right) {direction: input;}
-        pin(i_left) {direction: input;}
+        pin(i_right, i_left) {direction: input;}
         pin(o_left) {
             direction: output;
             function: "i_right+i_left";
         }
     }
     cell(RAMP_RIGHT){
-        pin(i_right) {direction: input;}
-        pin(i_left) {direction: input;}
+        pin(i_right, i_left) {direction: input;}
         pin(o_right) {
             direction: output;
             function: "i_right+i_left";
         }
     }
     cell (CROSS_OVER){
-        pin(i_right) {direction: input;}
-        pin(i_left) {direction: input;}
+        pin(i_right, i_left) {direction: input;}
         pin(o_right) {
             direction: output;
             function: "i_left";
@@ -28,24 +26,24 @@ library(turingtumble) {
         }
     }
     cell (INTERCEPTOR){
-        pin(i_right) {direction: input;}
-        pin(i_left) {direction: input;}
+        pin(i_right, i_left) {direction: input;}
         ; // empty statement
     }
     cell (BIT){
+        pin(i_right, i_left) {direction: input;}
+        pin(i_both){direction: internal; function: "i_right + i_left";}
+        pin(not_v){direction: internal; function: "IQN";}
         ff(IQ, IQN){
-            clocked_on: "i_right + i_left";
-            next_state: "IQ'";
+            clocked_on: "i_both";
+            next_state: "not_v";
         }
-        pin(i_right) {direction: input;}
-        pin(i_left) {direction: input;}
         pin(o_right) {
             direction: output;
-            function: "IQ*(i_right+i_left)";
+            function: "IQ*i_both";
         }
         pin(o_left) {
             direction: output;
-            function: "IQ'*(i_right+i_left)";
+            function: "IQN*i_both";
         }
     }
 }
